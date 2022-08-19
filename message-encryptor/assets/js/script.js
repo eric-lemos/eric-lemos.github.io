@@ -1,12 +1,12 @@
 /**
  * Key-Value of encryption rules
  **/
-let rules = { e: "enter", i: "imes", a: "ai", o: "ober", u: "ufat" };
+const rules = { e: "enter", i: "imes", a: "ai", o: "ober", u: "ufat" };
 
 /**
  * Key-Value of DOM Elements
  **/
-let html = {
+const html = {
     footer_icon: document.getElementById("footer-icon"),
     footer_info: document.getElementById("footer-info"),
     not_found: document.getElementById("not-found"),
@@ -25,6 +25,10 @@ let html = {
  * @return {string} encrypted text
  **/
 function encrypt(input) {
+    input = input
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[^a-z]/g, "");
     let output = "";
     let letter = "";
 
@@ -42,6 +46,10 @@ function encrypt(input) {
  * @return {string} decrypted text
  **/
 function decrypt(input) {
+    input = input
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[^a-z]/g, "");
     let output = "";
     let letter = "";
 
@@ -119,7 +127,7 @@ function copyOutput() {
     html.copy.addEventListener("click", () => {
         navigator.clipboard.writeText(html.output.value).then(() => {
             html.input.focus(html.input.select());
-            setTimeout(() => show(html.response), 300);
+            setTimeout(() => show(html.response), 0);
             setTimeout(() => hide(html.response), 3000);
         });
     });
