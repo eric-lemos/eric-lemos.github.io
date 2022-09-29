@@ -1,0 +1,3 @@
+[submodule "hangman-game"]
+	path = hangman-game
+	url = https://github.com/eric-lemos/hangman-game
